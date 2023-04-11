@@ -1,13 +1,27 @@
 import React, { useState } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Alert } from "react-bootstrap";
 
 function Product(props) {
   const { title, description, image, price, quantity } = props;
   const [likes, setLikes] = useState(0);
+  const [currentQuantity, setCurrentQuantity] = useState(quantity);
 
   const handleLikeClick = () => {
     setLikes(likes + 1);
+  }
+
+  const handleBuyClick = () => {
+    if (currentQuantity > 0) {
+      setCurrentQuantity(currentQuantity - 1);
+      setShowAlert(true); // add this line to show the Alert
+      setTimeout(() => {
+        setShowAlert(false); // add this line to hide the Alert after 2 seconds
+      }, 2000);
+    }
   };
+  
+  const [showAlert, setShowAlert] = useState(false); // add this line to initialize the state of the Alert component
+  
 
   return (
     <Card>
@@ -19,10 +33,19 @@ function Product(props) {
         <Button variant="primary" onClick={handleLikeClick}>
           {likes} Likes
         </Button>
+        <Button variant="primary" onClick={handleBuyClick} disabled={currentQuantity === 0}>
+          Buy ({currentQuantity})
+        </Button>
       </Card.Body>
       <Card.Footer>
         <small className="text-muted">{price} Dt</small>
       </Card.Footer>
+      {showAlert && (
+  <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
+    You bought an item!
+  </Alert>
+)}
+
     </Card>
   );
 }
