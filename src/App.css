@@ -37,3 +37,15 @@
     transform: rotate(360deg);
   }
 }
+@keyframes clignote {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+
+.bestproduct {
+  background-color: #DB7090;
+  animation: clignote 2s linear infinite; 
+  }
+

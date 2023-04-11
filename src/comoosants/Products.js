@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 //import placeholder from "../../public/placeholder.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Alert } from 'react-bootstrap';
+import '../App.css'
 function Products() {
     const [showWelcome, setShowWelcome] = useState(false);
 

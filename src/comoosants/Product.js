@@ -5,9 +5,13 @@ function Product(props) {
   const { title, description, image, price, quantity } = props;
   const [likes, setLikes] = useState(0);
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
+  const [isBestProduct, setIsBestProduct] = useState(false);
 
   const handleLikeClick = () => {
     setLikes(likes + 1);
+    if (likes >= 5){
+      setIsBestProduct (true);
+    }
   }
 
   const handleBuyClick = () => {
@@ -24,7 +28,7 @@ function Product(props) {
 
 
   return (
-    <Card>
+    <Card  className={isBestProduct ? 'bestproduct' : ''}>
       <Card.Img variant="top" src={image} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
