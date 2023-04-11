@@ -1,9 +1,16 @@
-import React from "react";
 import Product from "./Product";
+import React, { useState, useEffect } from "react";
 //import placeholder from "../../public/placeholder.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Alert } from 'react-bootstrap';
 function Products() {
+    const [showWelcome, setShowWelcome] = useState(false);
+
+  useEffect(() => {
+    setShowWelcome(true);
+    const timer = setTimeout(() => setShowWelcome(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
    
     const products = [
       {
@@ -31,6 +38,11 @@ function Products() {
   
     return (
         <Container>
+           {showWelcome && (
+        <Alert variant="info" onClose={() => setShowWelcome(false)} dismissible>
+          Hello, welcome to our shop!
+        </Alert>
+      )}
         <Row>
           {products.map((product, index) => (
             <Col key={index} xs={12} md={4}>

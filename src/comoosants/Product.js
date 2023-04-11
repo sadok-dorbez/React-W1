@@ -19,9 +19,9 @@ function Product(props) {
       }, 2000);
     }
   };
-  
+
   const [showAlert, setShowAlert] = useState(false); // add this line to initialize the state of the Alert component
-  
+
 
   return (
     <Card>
@@ -41,13 +41,15 @@ function Product(props) {
         <small className="text-muted">{price} Dt</small>
       </Card.Footer>
       {showAlert && (
-  <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
-    You bought an item!
-  </Alert>
-)}
+        <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
+          You bought an item!
+        </Alert>
+      )}
 
     </Card>
+
   );
+
 }
 
 export default Product;
